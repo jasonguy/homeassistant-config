@@ -1,0 +1,200 @@
+binary_sensor.motion_1:
+  friendly_name: 'Office'
+
+binary_sensor.sensor_1:
+  friendly_name: 'Side'
+
+binary_sensor.sensor_2:
+  friendly_name: 'Front'
+
+binary_sensor.sensor_3:
+  friendly_name: 'Back'
+
+camera.cortana_map:
+  friendly_name: 'Melinda'
+
+camera.guilty_spark_map:
+  friendly_name: 'Nick'
+
+group.SystemScripts:
+  friendly_name: 'System Status'
+
+group.DeviceStatus:
+  friendly_name: 'Device Status'
+
+group.wunderground:
+  friendly_name: 'Weather Underground'
+
+group.LightsDownstairs:
+  friendly_name: 'Lights'
+
+group.HVACDownstairs:
+  friendly_name: 'HVAC'
+
+group.NestDownstairs:
+  friendly_name: 'Nest'
+
+group.LightsUpstairs:
+  friendly_name: 'Lights'
+
+group.HVACUpstairs:
+  friendly_name: 'HVAC'
+
+group.NestUpstairs:
+  friendly_name: 'Nest'
+
+group.ZoneMinderOffice:
+  friendly_name: 'Office'
+
+group.Doors:
+  friendly_name: 'Doors'
+
+group.CommuteTimes:
+  friendly_name: 'Commute Time'
+
+group.DeviceMaps:
+  friendly_name: 'Device Maps'
+
+group.Pihole:
+  friendly_name: 'Pi-Hole'
+
+group.SystemStatus:
+  friendly_name: 'System Status'
+
+group.CertStatus:
+  friendly_name: 'Cert Status'
+
+group.DuckDNS:
+  friendly_name: 'DuckDNS Status'
+
+group.QNAP:
+  friendly_name: 'Infinity'
+
+script.system_away:
+  friendly_name: 'System Away'
+  icon: mdi:security-home
+
+script.system_home:
+  friendly_name: 'System Home'
+  icon: mdi:home-outline
+
+script.system_sleep:
+  friendly_name: 'System Sleep'
+  icon: mdi:sleep
+
+script.system_vacation:
+  friendly_name: 'System Vacation'
+  icon: mdi:wallet-travel
+
+sensor.cortana:
+  friendly_name: 'Melinda'
+  entity_picture: /local/cortana.jpg
+
+sensor.guilty_spark:
+  friendly_name: 'Nick'
+  entity_picture: /local/guilty_spark.jpg
+
+sensor.home_to_work:
+  icon: mdi:domain
+
+sensor.work_to_home:
+  icon: mdi:home-variant
+
+sensor.nick_to_work:
+  icon: mdi:domain
+
+sensor.nick_to_home:
+  icon: mdi:home-variant
+
+sensor.melinda_to_home:
+  icon: mdi:home-variant
+
+sensor.nick_to_melinda:
+  icon: mdi:account-multiple
+
+sensor.disk_use_percent_varcachezoneminder:
+  friendly_name: 'Storage Used'
+
+sensor.pihole_ads_blocked_today:
+  friendly_name: "Blocked Today"
+
+sensor.pihole_ads_percentage_blocked_today:
+  friendly_name: "Percentage Blocked Today"
+
+sensor.pihole_dns_queries_today:
+  friendly_name: "Queries Today"
+
+sensor.pihole_unique_clients:
+  friendly_name: "Unique Clients"
+
+sensor.pihole_domains_blocked:
+  friendly_name: "Domains Blocked"
+
+sensor.pws_feelslike_f:
+  friendly_name: 'Feels Like'
+  icon: mdi:thermometer-lines
+
+sensor.pws_location:
+  friendly_name: Location
+  icon: mdi:earth
+
+sensor.pws_observation_time:
+  friendly_name: Observation Time
+  icon: mdi:calendar-clock
+
+sensor.pws_station_id:
+  friendly_name: 'Station ID'
+  icon: mdi:fingerprint
+
+sensor.pws_temp_f:
+  friendly_name: 'Temp'
+  icon: mdi:thermometer
+
+sensor.pws_weather:
+  friendly_name: 'Weather'
+
+sensor.pws_precip_1hr_in:
+  friendly_name: Precip Last Hour (inches)
+  icon: mdi:cup-water
+
+sensor.pws_precip_today_in:
+  friendly_name: Precip Today (inches)
+  icon: mdi:water
+
+sensor.ssl_arbiter:
+  friendly_name: Arbiter
+
+sensor.ssl_genesis:
+  friendly_name: Genesis
+
+sensor.ssl_infinity:
+  friendly_name: Infinity
+
+sensor.ssl_witness:
+  friendly_name: Witness
+
+sensor.zoneminder_state:
+  friendly_name: 'Current State'
+
+switch.outlet_1:
+  friendly_name: 'Bar Light'
+  icon: mdi:lightbulb
+
+switch.outlet_2:
+  friendly_name: 'Desk Light'
+  #friendly_name: 'Buckeye Tree'
+  icon: mdi:lightbulb
+
+switch.outlet_3:
+  friendly_name: 'Guest Room Light'
+  #friendly_name: 'Family Christmas'
+  icon: mdi:lightbulb
+
+switch.outdoor_outlet_1:
+  friendly_name: 'Porch Lights'
+  #friendly_name: 'Exterior Christmas'
+  icon: mdi:lightbulb
+
+switch.pihole_switch:
+  friendly_name: "Status"
+  icon: mdi:comment-check-outline

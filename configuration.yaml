@@ -5,6 +5,7 @@ homeassistant:
   elevation: !secret home_elevation
   unit_system: imperial
   time_zone: !secret timezone
+  customize: !include includes/customize.yaml
   whitelist_external_dirs:
     - !secret home_assistant_directory
 
