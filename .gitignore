@@ -1,19 +1,7 @@
-# logs
-logs
-*.log
-
-# files
 *.cfg
 *.conf
-*.db
 *.jpg
-*.json
 *.pyc
-*.uuid
 .DS_Store
-.HA_VERSION
-known_devices.yaml
 secrets.yaml
 
-# folders
-deps
