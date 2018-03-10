@@ -1,0 +1,46 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: !secret home_elevation
+  unit_system: imperial
+  time_zone: !secret timezone
+
+frontend:
+
+http:
+  api_password: !secret http_password
+  base_url: !secret base_url
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  trusted_networks:
+    - !secret lan
+    - !secret vpn
+    - !secret work
+    - 127.0.0.1
+
+zone:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  icon: mdi:home-map-marker
+  radius: 100
+zone 2:
+  name: Work
+  latitude: !secret work_latitude
+  longitude: !secret work_longitude
+  icon: mdi:map-marker
+  radius: 100
+
+config:
+
+history:
+
+logbook:
+
+recorder:
+  purge_keep_days: 30
+
+sun:
+
+updater:
