@@ -1,0 +1,16 @@
+home:
+  name: Home
+
+away:
+  name: Away
+
+sleep:
+  name: Sleep
+
+vacation:
+  name: Vacation
+
+alarm:
+  name: Alarm
+  initial: off
+  icon: mdi:alarm-light

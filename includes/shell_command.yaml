@@ -1,0 +1,7 @@
+zoneminder_home: '/home/homeassistant/.homeassistant/bin/zm_state.py --set Home &'
+zoneminder_away: '/home/homeassistant/.homeassistant/bin/zm_state.py --set Away &'
+zoneminder_sleep: '/home/homeassistant/.homeassistant/bin/zm_state.py --set Sleep &'
+zoneminder_vacation: '/home/homeassistant/.homeassistant/bin/zm_state.py --set Vacation &'
+
+zoneminder_office_record_on: '/home/homeassistant/.homeassistant/bin/zm_alarm.py --trigger 2 &'
+zoneminder_office_record_off: '/home/homeassistant/.homeassistant/bin/zm_alarm.py --clear 2 &'

@@ -1,0 +1,33 @@
+- platform: mqtt
+  name: "sensor_1"
+  state_topic: "smartthings/sensor_1/contact"
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: "opening"
+
+- platform: mqtt
+  name: "sensor_2"
+  state_topic: "smartthings/sensor_2/contact"
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: "opening"
+
+- platform: mqtt
+  name: "sensor_3"
+  state_topic: "smartthings/sensor_3/contact"
+  payload_on: "open"
+  payload_off: "closed"
+  device_class: "opening"
+
+- platform: mqtt
+  name: "motion_1"
+  state_topic: "smartthings/motion_1/motion"
+  payload_on: "active"
+  payload_off: "inactive"
+  device_class: "motion"
+
+- platform: mqtt
+  name: "office_record"
+  state_topic: "local/recording/office"
+  payload_on: "active"
+  payload_off: "inactive"

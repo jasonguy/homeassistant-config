@@ -1,0 +1,11 @@
+- name: iOS
+  platform: group
+  services:
+    - service: ios_guilty_spark
+    - service: ios_cortana
+    - service: ios_bitepad
+
+- platform: slack
+  name: glados
+  api_key: !secret slack_api_key
+  default_channel: !secret slack_default_channel

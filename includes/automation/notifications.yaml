@@ -1,0 +1,284 @@
+- alias: Arbiter cert expires in 15 days
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_arbiter
+    below: 16
+  action:
+    - service: notify.glados
+      data:
+        title: Arbiter Certificate Expiring
+        message: The SSL certificate for halo-arbiter.duckdns.org expires in 15 days.
+    - service: notify.ios_guilty_spark
+      data:
+        message: "Arbiter Certificate Expiring"
+        data:
+          subtitle: "The SSL certificate for halo-arbiter.duckdns.org expires in 15 days."
+
+- alias: Arbiter cert expires in 10 days
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_arbiter
+    below: 11
+  action:
+    - service: notify.glados
+      data:
+        title: Arbiter Certificate Expiring
+        message: The SSL certificate for halo-arbiter.duckdns.org expires in 10 days.
+    - service: notify.ios_guilty_spark
+      data:
+        message: "Arbiter Certificate Expiring"
+        data:
+          subtitle: "The SSL certificate for halo-arbiter.duckdns.org expires in 15 days."
+
+- alias: Arbiter cert expires in 5 days
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_arbiter
+    below: 6
+  action:
+    - service: notify.glados
+      data:
+        title: Arbiter Certificate Expiring
+        message: "@channel The SSL certificate for halo-arbiter.duckdns.org expires in 5 days."
+    - service: notify.ios_guilty_spark
+      data:
+        message: "Arbiter Certificate Expiring"
+        data:
+          subtitle: "The SSL certificate for halo-arbiter.duckdns.org expires in 5 days."
+
+- alias: Witness cert expires in 15 days
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_witness
+    below: 16
+  action:
+    - service: notify.glados
+      data:
+        title: Witness Certificate Expiring
+        message: The SSL certificate for halo-witness.duckdns.org expires in 15 days.
+    - service: notify.ios_guilty_spark
+      data:
+        message: "Witness Certificate Expiring"
+        data:
+          subtitle: "The SSL certificate for halo-witness.duckdns.org expires in 15 days."
+
+- alias: Witness cert expires in 10 days
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_witness
+    below: 11
+  action:
+    - service: notify.glados
+      data:
+        title: Witness Certificate Expiring
+        message: The SSL certificate for halo-witness.duckdns.org expires in 10 days.
+    - service: notify.ios_guilty_spark
+      data:
+        message: "Witness Certificate Expiring"
+        data:
+          subtitle: "The SSL certificate for halo-witness.duckdns.org expires in 15 days."
+
+- alias: Witness cert expires in 5 days
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.ssl_witness
+    below: 6
+  action:
+    - service: notify.glados
+      data:
+        title: Witness Certificate Expiring
+        message: "@channel The SSL certificate for halo-witness.duckdns.org expires in 5 days."
+    - service: notify.ios_guilty_spark
+      data:
+        message: "Witness Certificate Expiring"
+        data:
+          subtitle: "The SSL certificate for halo-witness.duckdns.org expires in 5 days."
+
+- alias: Side door open notification
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_1
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.glados
+    data:
+      title: Side door open
+      message: Side door has been opened
+  - condition: template
+    value_template: "{{ states('sensor.zoneminder_state') != 'Home' }}"
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.alarm
+  - service: notify.ios_guilty_spark
+    data:
+      title: Side door opened
+      message: "Door opened and system is set to {{ states('sensor.zoneminder_state') }}"
+
+- alias: Side door close notification
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_1
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.glados
+    data:
+      title: Side door closed
+      message: Side door has been closed
+
+- alias: Front door open notification
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_2
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.glados
+    data:
+      title: Front door open
+      message: Front door has been opened
+  - condition: template
+    value_template: "{{ states('sensor.zoneminder_state') != 'Home' }}"
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.alarm
+  - service: notify.ios_guilty_spark
+    data:
+      title: Front door opened
+      message: "Door opened and system is set to {{ states('sensor.zoneminder_state') }}"
+
+- alias: Front door close notification
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_2
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.glados
+    data:
+      title: Front door closed
+      message: Front door has been closed
+
+- alias: Back door open notification
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_3
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.glados
+    data:
+      title: Back door open
+      message: Back door has been opened
+  - condition: template
+    value_template: "{{ states('sensor.zoneminder_state') != 'Home' }}"
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.alarm
+  - service: notify.ios_guilty_spark
+    data:
+      title: Back door opened
+      message: "Door opened and system is set to {{ states('sensor.zoneminder_state') }}"
+
+- alias: Back door close notification
+  trigger:
+    platform: state
+    entity_id: binary_sensor.sensor_3
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.glados
+    data:
+      title: Back door closed
+      message: Back door has been closed
+
+- alias: Downstairs Nest Protect CO Alert
+  trigger:
+    platform: state
+    entity_id: sensor.downstairs_nest_protect_co_status
+    from: 'Ok'
+  action:
+  - service: notify.glados
+    data:
+      title: Carbon Monoxide Alert
+      message: "@channel Downstairs Nest Protect is reporting carbon monoxide"
+  - service: notify.ios
+    data:
+      title: Carbon Monoxide Alert
+      message: Downstairs Nest Protect is reporting carbon monoxide
+
+- alias: Upstairs Nest Protect CO Alert
+  trigger:
+    platform: state
+    entity_id: sensor.upstairs_nest_protect_co_status
+    from: 'Ok'
+  action:
+  - service: notify.glados
+    data:
+      title: Carbon Monoxide Alert
+      message: "@channel Upstairs Nest Protect is reporting carbon monoxide"
+  - service: notify.ios
+    data:
+      title: Carbon Monoxide Alert
+      message: Upstairs Nest Protect is reporting carbon monoxide
+
+- alias: Downstairs Nest Protect Smoke Alert
+  trigger:
+    platform: state
+    entity_id: sensor.downstairs_nest_protect_smoke_status
+    from: 'Ok'
+  action:
+  - service: notify.glados
+    data:
+      title: Smoke Alert
+      message: "@channel Downstairs Nest Protect is reporting smoke"
+  - service: notify.ios
+    data:
+      title: Smoke Alert
+      message: Downstairs Nest Protect is reporting smoke
+
+- alias: Upstairs Nest Protect Smoke Alert
+  trigger:
+    platform: state
+    entity_id: sensor.upstairs_nest_protect_smoke_status
+    from: 'Ok'
+  action:
+  - service: notify.glados
+    data:
+      title: Smoke Alert
+      message: "@channel Upstairs Nest Protect is reporting smoke"
+  - service: notify.ios
+    data:
+      title: Smoke Alert
+      message: Upstairs Nest Protect is reporting smoke
+
+- alias: Downstairs Nest Protect Battery Alert
+  trigger:
+    platform: state
+    entity_id: sensor.downstairs_nest_protect_battery_health
+    from: 'Ok'
+  action:
+  - service: notify.glados
+    data:
+      title: Battery Alert
+      message: "@channel Downstairs Nest Protect is reporting low battery"
+  - service: notify.ios
+    data:
+      title: Battery Alert
+      message: Downstairs Nest Protect is reporting low battery
+
+- alias: Upstairs Nest Protect Battery Alert
+  trigger:
+    platform: state
+    entity_id: sensor.upstairs_nest_protect_battery_health
+    from: 'Ok'
+  action:
+  - service: notify.glados
+    data:
+      title: Smoke Alert
+      message: "@channel Upstairs Nest Protect is reporting low battery"
+  - service: notify.ios
+    data:
+      title: Battery Alert
+      message: Upstairs Nest Protect is reporting low battery

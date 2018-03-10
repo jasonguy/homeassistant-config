@@ -1,0 +1,213 @@
+- alias: Bar lamp upon arrival
+  trigger:
+    - platform: state
+      entity_id: group.trackguiltyspark
+      to: 'home'
+    - platform: state
+      entity_id: group.trackcortana
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: or
+        conditions:
+          - condition: sun
+            after: sunset
+          - condition: sun
+            before: sunrise
+      - condition: state
+        entity_id: switch.outlet_1
+        state: 'off'
+  action:
+    - service: script.bar_lamp_arrival
+
+- alias: Start office recording
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_1
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ states('input_boolean.home') != 'on' }}"
+      - condition: template
+        value_template: "{{ states('input_boolean.alarm') == 'on' }}"
+  action:
+    - service: script.office_record_on
+    - service: mqtt.publish
+      data:
+        topic: "local/recording/office"
+        payload: "active"
+        retain: "true"
+    - service: notify.glados
+      data:
+        title: Office motion detected
+        message: "@channel Motion detected in office, recording started"
+    - service: notify.ios
+      data:
+        message: "Motion detected in office"
+        data:
+          push:
+            category: camera
+          entity_id: camera.office
+
+- alias: Stop office recording
+  trigger:
+    platform: state
+    entity_id: binary_sensor.motion_1
+    from: 'on'
+    to: 'off'
+  condition:
+    condition: template
+    value_template: "{{ states('binary_sensor.office_record') == 'on' }}"
+  action:
+    - service: script.office_record_off
+    - service: mqtt.publish
+      data:
+        topic: "local/recording/office"
+        payload: "inactive"
+        retain: "true"
+    - service: notify.glados
+      data:
+        title: Office motion detected
+        message: Recording has been stopped
+
+- alias: Set system to sleep
+  trigger:
+    platform: time
+    at: '01:00:00'
+  condition:
+    condition: template
+    value_template: "{{ states('sensor.zoneminder_state') == 'Home' }}"
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.sleep
+    - service: notify.glados
+      data:
+        title: System set to Sleep
+        message: System still set to home at 1AM, set automatically to sleep.
+    - service: notify.ios_guilty_spark
+      data:
+        message: "System automatically set to Sleep"
+        data:
+          subtitle: "System still set to Home at 1AM, automatically set to Sleep"
+
+- alias: Set system to home if guest enabled
+  trigger:
+    platform: time
+    at: '06:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ states('sensor.zoneminder_state') == 'Sleep' }}"
+      - condition: template
+        value_template: "{{ states('input_select.system') == 'Guest' }}"
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.home
+    - service: notify.glados
+      data:
+        title: System set to Home
+        message: System set to home at 6AM, due to Guest mode enabled.
+    - service: notify.ios_guilty_spark
+      data:
+        message: "System set to Home"
+        data:
+          subtitle: "System set to home at 6AM, due to Guest mode enabled."
+
+- alias: Set system home
+  trigger:
+    platform: state
+    entity_id: input_boolean.home
+    from: 'off'
+    to: 'on'
+  action:
+    - service: script.system_home
+
+- alias: Set system away
+  trigger:
+    platform: state
+    entity_id: input_boolean.away
+    from: 'off'
+    to: 'on'
+  action:
+    - service: script.system_away
+
+- alias: Set system sleep
+  trigger:
+    platform: state
+    entity_id: input_boolean.sleep
+    from: 'off'
+    to: 'on'
+  action:
+    - service: script.system_sleep
+
+- alias: Set system vacation
+  trigger:
+    platform: state
+    entity_id: input_boolean.vacation
+    from: 'off'
+    to: 'on'
+  action:
+    - service: script.system_vacation
+
+- alias: Update device locations following door open event
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sensor_1
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sensor_2
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: binary_sensor.sensor_3
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.iOS
+      data:
+        message: "request_location_update"
+    - delay: 0:10
+    - service: notify.iOS
+      data:
+        message: "request_location_update"
+
+- alias: 'Set theme at startup'
+  initial_state: 'on'
+  trigger:
+   - platform: homeassistant
+     event: start
+  action:
+    service: frontend.set_theme
+    data:
+      name: darkorange
+
+- alias: 'Update device locations at startup'
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    service: script.turn_on
+    entity_id: script.update_location_all
+
+- alias: Home Assistant Update Available
+  trigger:
+    - platform: state
+      entity_id: updater.updater
+  action:
+  - service: notify.glados
+    data:
+      title: 'New Home Assistant Release Available'
+      message: "@channel Home Assistant version {{ states.updater.updater.state }} is now available."
+  - service: notify.ios_guilty_spark
+    data:
+      title: 'New Home Assistant Release Available'
+      message: "Home Assistant version {{ states.updater.updater.state }} is now available."

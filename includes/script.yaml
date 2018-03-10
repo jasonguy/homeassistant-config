@@ -1,0 +1,124 @@
+bar_lamp_arrival:
+  sequence:
+    - service: homeassistant.turn_on
+      entity_id:
+        - switch.outlet_1
+    - delay:
+        seconds: 300
+    - service: homeassistant.turn_off
+      entity_id: switch.outlet_1
+
+update_location_guilty_spark:
+  sequence:
+    - service: notify.ios_guilty_spark
+      data:
+        message: "request_location_update"
+
+update_location_cortana:
+  sequence:
+    - service: notify.ios_cortana
+      data:
+        message: "request_location_update"
+
+update_location_all:
+  sequence:
+    - service: notify.ios
+      data:
+        message: "request_location_update"
+
+system_home:
+  sequence:
+    - service: shell_command.zoneminder_home
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.home
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.vacation
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.alarm
+    - service: notify.glados
+      data:
+        title: System mode changed
+        message: System mode has been set to *_home_*
+
+system_away:
+  sequence:
+    - service: shell_command.zoneminder_away
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.home
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.away
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.vacation
+    - service: notify.glados
+      data:
+        title: System mode changed
+        message: System mode has been set to *_away_*
+
+system_sleep:
+  sequence:
+    - service: shell_command.zoneminder_sleep
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.home
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.sleep
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.vacation
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.alarm
+    - service: notify.glados
+      data:
+        title: System mode changed
+        message: System mode has been set to *_sleep_*
+
+system_vacation:
+  sequence:
+    - service: shell_command.zoneminder_vacation
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.home
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.away
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.vacation
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.alarm
+    - service: notify.glados
+      data:
+        title: System mode changed
+        message: System mode has been set to *_vacation_*
+
+office_record_on:
+  sequence:
+    - service: shell_command.zoneminder_office_record_on
+
+office_record_off:
+  sequence:
+    - service: shell_command.zoneminder_office_record_off

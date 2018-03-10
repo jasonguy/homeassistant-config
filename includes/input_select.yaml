@@ -1,0 +1,6 @@
+system:
+  name: System
+  options:
+   - Normal
+   - Guest
+   - Christmas

@@ -9,7 +9,7 @@ homeassistant:
     - !secret home_assistant_directory
 
 frontend:
-  themes: !include_dir_merge_named themes/
+  themes: !include_dir_merge_named includes/themes/
 
 http:
   api_password: !secret http_password
@@ -108,3 +108,16 @@ zoneminder:
   host: !secret zoneminder_host
   username: !secret zoneminder_user
   password: !secret zoneminder_pass
+
+automation: !include_dir_merge_list includes/automation
+binary_sensor: !include includes/binary_sensor.yaml
+camera: !include includes/camera.yaml
+#group: !include_dir_merge_named group
+input_boolean: !include includes/input_boolean.yaml
+input_select: !include includes/input_select.yaml
+notify: !include includes/notify.yaml
+scene: !include includes/scene.yaml
+script: !include includes/script.yaml
+sensor: !include includes/sensor.yaml
+shell_command: !include includes/shell_command.yaml
+switch: !include includes/switch.yaml

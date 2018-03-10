@@ -1,0 +1,252 @@
+- alias: Cortana Arrived at Home
+  trigger:
+    platform: state
+    entity_id: device_tracker.cortana
+    to: home
+  condition:
+    condition: template
+    value_template: "{{ states('sensor.guilty_spark') != 'Home' }}"
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.home
+    - service: notify.ios_guilty_spark
+      data:
+        message: "System set to Home - Melinda arrived"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret home_latitude
+            longitude: !secret home_longitude
+
+- alias: Cortana home based on wifi
+  trigger:
+    platform: state
+    entity_id: device_tracker.cortana_nmap
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: template
+    value_template: "{{ states('sensor.cortana') != 'Home' }}"
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: cortana
+        location_name: 'home'
+    - service: notify.glados
+      data:
+        title: Cortana home based on wifi
+        message: Detected Cortana on wifi, so updated tracker state
+
+- alias: Cortana Left Home
+  trigger:
+    platform: state
+    entity_id: device_tracker.cortana
+    from: home
+    to: not_home
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ states('sensor.guilty_spark') != 'Home' }}"
+      - condition: template
+        value_template: "{{ states('input_select.system') != 'Guest' }}"
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.away
+    - service: notify.ios_guilty_spark
+      data:
+        message: "System set to Away - Melinda left"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret home_latitude
+            longitude: !secret home_longitude
+
+- alias: Guilty Spark Arrived at Work
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark
+    to: Work
+  action:
+    - service: notify.ios_cortana
+      data:
+        message: "Nick arrived at work"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret work_latitude
+            longitude: !secret work_longitude
+    - service: notify.glados
+      data:
+        title: Guilty Spark work slack notice
+        message: Guilty Spark detected at work
+
+- alias: Guilty Spark Left Work
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark
+    from: Work
+  action:
+    - service: notify.ios_guilty_spark
+      data:
+        message: "request_location_update"
+    - delay: '00:01:00'
+    - condition: template
+      value_template: "{{ states('sensor.guilty_spark') != 'Work' }}"
+    - service: notify.ios_cortana
+      data:
+        message: "Nick left work"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret work_latitude
+            longitude: !secret work_longitude
+    - service: notify.glados
+      data:
+        title: Guilty Spark work slack notice
+        message: Guilty Spark no longer detected at work
+
+- alias: Guilty Spark Arrived at Home
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark
+    to: home
+  action:
+    - service: notify.glados
+      data:
+        title: Guilty Spark home slack notice
+        message: Guilty Spark detected at home
+    - condition: template
+      value_template: "{{ states('sensor.cortana') != 'Home' }}"
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.home
+    - service: notify.ios_cortana
+      data:
+        message: "Nick arrived at home"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret home_latitude
+            longitude: !secret home_longitude
+    - service: notify.ios_guilty_spark
+      data:
+        message: "System set to Home"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret home_latitude
+            longitude: !secret home_longitude
+
+- alias: Guilty Spark home based on wifi
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark_nmap
+    from: 'not_home'
+    to: 'home'
+  condition:
+    condition: template
+    value_template: "{{ states('sensor.guilty_spark') != 'Home' }}"
+  action:
+    - service: device_tracker.see
+      data:
+        dev_id: guilty_spark
+        location_name: 'home'
+    - service: notify.glados
+      data:
+        title: Guilty Spark home based on wifi
+        message: Detected Guilty Spark on wifi, so updated tracker state
+
+- alias: Guilty Spark Left Home
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark
+    from: home
+  action:
+    - service: notify.glados
+      data:
+        title: Guilty Spark home slack notice
+        message: Guilty Spark no longer detected at home
+    - condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ states('sensor.cortana') != 'Home' }}"
+        - condition: template
+          value_template: "{{ states('input_select.system') != 'Guest' }}"
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.away
+    - service: notify.ios_cortana
+      data:
+        message: "Nick left home"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret home_latitude
+            longitude: !secret home_longitude
+    - service: notify.ios_guilty_spark
+      data:
+        message: "System set to Away"
+        data:
+          push:
+            category: map
+          action_data:
+            latitude: !secret home_latitude
+            longitude: !secret home_longitude
+
+- alias: Cortana home slack notice
+  trigger:
+    platform: state
+    entity_id: device_tracker.cortana
+    from: 'not_home'
+    to: 'home'
+  action:
+    service: notify.glados
+    data:
+      title: Cortana home slack notice
+      message: Cortana detected at home
+
+- alias: Cortana away slack notice
+  trigger:
+    platform: state
+    entity_id: device_tracker.cortana
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.glados
+    data:
+      title: Cortana away slack notice
+      message: Cortana left home
+
+- alias: Guilty Spark home slack notice
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark
+    from: 'not_home'
+    to: 'home'
+  action:
+    service: notify.glados
+    data:
+      title: Guilty Spark home slack notice
+      message: Guilty Spark detected at home
+
+- alias: Guilty Spark away slack notice
+  trigger:
+    platform: state
+    entity_id: device_tracker.guilty_spark
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.glados
+    data:
+      title: Guilty Spark away slack notice
+      message: Guilty Spark left home

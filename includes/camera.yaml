@@ -1,0 +1,15 @@
+- platform: foscam
+  ip: !secret foscam_ip
+  username: !secret foscam_user
+  password: !secret foscam_pass
+  name: Office
+
+- platform: generic
+  name: cortana_map
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.cortana.attributes.latitude }},{{ states.device_tracker.cortana.attributes.longitude }}&zoom=18&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.cortana.attributes.latitude }},{{ states.device_tracker.cortana.attributes.longitude }}
+  limit_refetch_to_url_change: true
+
+- platform: generic
+  name: guilty_spark_map
+  still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.guilty_spark.attributes.latitude }},{{ states.device_tracker.guilty_spark.attributes.longitude }}&zoom=18&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.guilty_spark.attributes.latitude }},{{ states.device_tracker.guilty_spark.attributes.longitude }}
+  limit_refetch_to_url_change: true

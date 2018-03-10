@@ -1,0 +1,49 @@
+- name: bar_on
+  entities:
+    switch.outlet_1: on
+
+- name: bar_off
+  entities:
+    switch.outlet_1: off
+
+- name: office_on
+  entities:
+    switch.outlet_2: on
+
+- name: office_off
+  entities:
+    switch.outlet_2: off
+
+- name: guestroom_on
+  entities:
+    switch.outlet_3: on
+
+- name: guestroom_off
+  entities:
+    switch.outlet_3: off
+
+- name: all_off
+  entities:
+    switch.outlet_1: off
+    switch.outlet_2: off
+    switch.outlet_3: off
+    switch.outdoor_outlet_1: off
+
+- name: christmas_on
+  entities:
+    switch.outlet_2: on
+    switch.outlet_3: on
+    switch.outdoor_outlet_1: on
+
+- name: alarm_on
+  entities:
+    switch.outlet_1: on
+    switch.outlet_2: on
+    switch.outlet_3: on
+    switch.outdoor_outlet_1: on
+
+- name: alarm_off
+  entities:
+    switch.outlet_2: off
+    switch.outlet_3: off
+    switch.outdoor_outlet_1: off

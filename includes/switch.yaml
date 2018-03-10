@@ -1,0 +1,39 @@
+- platform: mqtt
+  name: "outlet_1"
+  state_topic: "smartthings/outlet_1/switch"
+  command_topic: "smartthings/outlet_1/switch"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
+- platform: mqtt
+  name: "outlet_2"
+  state_topic: "smartthings/outlet_2/switch"
+  command_topic: "smartthings/outlet_2/switch"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
+- platform: mqtt
+  name: "outlet_3"
+  state_topic: "smartthings/outlet_3/switch"
+  command_topic: "smartthings/outlet_3/switch"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
+- platform: mqtt
+  name: "outdoor_outlet_1"
+  state_topic: "smartthings/outdoor_outlet_1/switch"
+  command_topic: "smartthings/outdoor_outlet_1/switch"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
+- platform: command_line
+  switches:
+    pihole_switch:
+      command_on: !secret pihole_command_on
+      command_off: !secret pihole_command_off
+      command_state: !secret pihole_command_state
+      value_template: "{{ value_json.status == 'enabled' }}"
