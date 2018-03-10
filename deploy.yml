@@ -1,0 +1,30 @@
+---
+- hosts: arbiter
+  roles:
+    - homeassistant
+  user: "{{ user }}"
+  become: false
+  gather_facts: no
+  tasks:
+    # Copy files
+    - name: Copy home-assistant files
+      copy: src={{ item }} dest={{ path }}{{ item }}
+      notify: restart homeassistant
+      with_items: "{{ hass_files }}"
+    # Copy home-assistant directories
+    - name: Copy home-assistant directories
+      synchronize: src={{ item }}/ dest={{ path }}{{ item }} delete=yes recursive=yes rsync_opts="--exclude=*.pyc"
+      notify: restart homeassistant
+      with_items: "{{ hass_dirs }}"
+    # Copy non home-assistant directories
+    - name: Copy non home-assistant directories
+      synchronize: src={{ item }}/ dest={{ path }}{{ item }} delete=yes recursive=yes rsync_opts="--exclude=*.pyc"
+      with_items: "{{ non_hass_dirs }}"
+    # Copy homebridge config
+    - name: Copy homebridge config
+      copy: src=homebridge/config.json dest=~/.homebridge/config.json
+      notify: restart homebridge
+    # Copy appdaemon directory
+    - name: Copy appdaemon directory
+      synchronize: src=appdaemon/ dest={{ path }}appdaemon/ delete=yes recursive=yes
+      notify: restart appdaemon

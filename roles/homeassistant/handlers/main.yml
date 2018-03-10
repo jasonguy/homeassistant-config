@@ -1,0 +1,10 @@
+---
+- name: restart homeassistant
+  service: name=home-assistant@homeassistant.service state=restarted
+  become: true
+- name: restart homebridge
+  service: name=homebridge.service state=restarted
+  become: true
+- name: restart appdaemon
+  service: name=appdaemon@homeassistant.service state=restarted
+  become: true

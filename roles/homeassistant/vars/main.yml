@@ -1,0 +1,10 @@
+---
+user: homeassistant
+path: /home/homeassistant/.homeassistant/
+hass_files:
+  - configuration.yaml
+  - secrets.yaml
+hass_dirs:
+  - includes
+non_hass_dirs:
+  - bin
