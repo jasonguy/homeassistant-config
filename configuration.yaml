@@ -5,8 +5,11 @@ homeassistant:
   elevation: !secret home_elevation
   unit_system: imperial
   time_zone: !secret timezone
+  whitelist_external_dirs:
+    - /home/homeassistant/.homeassistant/
 
 frontend:
+  themes: !include_dir_merge_named themes/
 
 http:
   api_password: !secret http_password
@@ -32,15 +35,76 @@ zone 2:
   icon: mdi:map-marker
   radius: 100
 
+
+
+apple_tv:
+  - host: !secret atv1_ip
+    login_id: !secret atv1_loginid
+    name: Living Room TV
+
 config:
+
+duckdns:
+  domain: !secret duckdns_domain
+  access_token: !secret duckdns_token
+
+ecobee:
+  api_key: !secret ecobee_api_key
+
+google_assistant:
+  project_id: !secret google_assistant_project_id
+  client_id: !secret google_assistant_client_id
+  access_token: !secret google_assistant_access_token
+  api_key: !secret google_assistant_api_key
+  exposed_domains:
+    - script
+    - switch
+  entity_config:
+    script.update_location_guilty_spark:
+      expose: false
+    script.update_location_cortana:
+      expose: false
+    script.bar_lamp_arrival:
+      expose: false
+    script.office_record_on:
+      expose: false
+    script.office_record_off:
+      expose: false
 
 history:
 
 logbook:
+
+media_player:
+  - platform: cast
+  - platform: cast
+    host: !secret office_speaker_ip
+  - platform: cast
+    host: !secret kitchen_speaker_ip
+  - platform: cast
+    host: !secret bedroom_cast_ip
+
+mqtt:
+  broker: !secret mqtt_broker
+  port: !secret mqtt_port
+  client_id: !secret mqtt_client_id
+  keepalive: 60
+
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
 
 recorder:
   purge_keep_days: 30
 
 sun:
 
+tts:
+  - platform: google
+
 updater:
+
+zoneminder:
+  host: !secret zoneminder_host
+  username: !secret zoneminder_user
+  password: !secret zoneminder_pass
