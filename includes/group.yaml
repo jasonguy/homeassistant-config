@@ -1,0 +1,221 @@
+default_view:
+  view: yes
+  icon: mdi:home-assistant
+  entities:
+    - group.SystemScripts
+    - group.DeviceStatus
+    - group.wunderground
+    - group.CommuteTimes
+    - group.DeviceMaps
+
+downstairs_view:
+  view: yes
+  icon: mdi:arrow-down-bold-box-outline
+  entities:
+    - group.LightsDownstairs
+    - group.AppleTvDownstairs
+    - group.DownstairsSpeakers
+    - group.HVACDownstairs
+    - group.NestDownstairs
+
+upstairs_view:
+  view: yes
+  icon: mdi:arrow-up-bold-box-outline
+  entities:
+    - group.LightsUpstairs
+    - group.Chromecast
+    - group.HVACUpstairs
+    - group.NestUpstairs
+
+security_view:
+  view: yes
+  icon: mdi:security-home
+  entities:
+    - group.ZoneMinderOffice
+    - group.Doors
+
+system_view:
+  view: yes
+  icon: mdi:server-network
+  entities:
+    - group.Pihole
+    - group.SystemStatus
+    - group.CertStatus
+    - group.DuckDNS
+    - group.QNAP
+
+debug_view:
+  view: yes
+  icon: mdi:pulse
+  entities:
+    - script.update_location_cortana
+    - script.update_location_guilty_spark
+    - script.update_location_all
+
+
+
+AppleTvDownstairs:
+  - media_player.downstairs_apple_tv
+
+Chromecast:
+  - media_player.family_room_tv
+
+CommuteTimes:
+  - sensor.nick_to_home
+  - sensor.melinda_to_home
+  - sensor.home_to_work
+  - sensor.work_to_home
+  - sensor.nick_to_melinda
+
+DeviceStatus:
+  - sensor.guilty_spark
+  - sensor.guilty_spark_battery_level
+  - sensor.guilty_spark_battery_state
+  - sensor.cortana
+  - sensor.cortana_battery_level
+  - sensor.cortana_battery_state
+
+DeviceMaps:
+  - camera.guilty_spark_map
+  - camera.cortana_map
+
+Doors:
+  - binary_sensor.sensor_1
+  - binary_sensor.sensor_2
+  - binary_sensor.sensor_3
+
+DownstairsSpeakers:
+  - media_player.kitchen_speaker
+  - media_player.office_speaker
+  - media_player.downstairs
+
+DuckDNS:
+  - sensor.myipopendnscom
+  - sensor.haloarbiterduckdnsorg
+  - sensor.halogenesisduckdnsorg
+  - sensor.haloinfinityduckdnsorg
+  - sensor.haloportalduckdnsorg
+  - sensor.halowitnessduckdnsorg
+
+HVACDownstairs:
+  - climate.downstairs
+  - sensor.downstairs_temperature
+  - sensor.living_room_temperature
+  - binary_sensor.downstairs_occupancy
+  - binary_sensor.living_room_occupancy
+
+HVACUpstairs:
+  - climate.upstairs
+  - sensor.upstairs_temperature
+  - sensor.master_bedroom_temperature
+  - binary_sensor.upstairs_occupancy
+  - binary_sensor.master_bedroom_occupancy
+
+KitchenSpeaker:
+  - media_player.kitchen_speaker
+
+LightsDownstairs:
+  - switch.outlet_1
+  - switch.outlet_2
+  - switch.outdoor_outlet_1
+
+LightsUpstairs:
+  - switch.outlet_3
+
+NestDownstairs:
+  - binary_sensor.downstairs_nest_protect_online
+  - sensor.downstairs_nest_protect_battery_health
+  - sensor.downstairs_nest_protect_co_status
+  - sensor.downstairs_nest_protect_smoke_status
+
+NestUpstairs:
+  - binary_sensor.upstairs_nest_protect_online
+  - sensor.upstairs_nest_protect_battery_health
+  - sensor.upstairs_nest_protect_co_status
+  - sensor.upstairs_nest_protect_smoke_status
+
+OfficeSpeaker:
+  - media_player.office_speaker
+
+Pihole:
+  entities:
+    - switch.pihole_switch
+    - sensor.pihole_dns_queries_today
+    - sensor.pihole_ads_blocked_today
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_unique_clients
+    - sensor.pihole_domains_blocked
+
+QNAP:
+  entities:
+    - sensor.infinity_cpu_usage
+    - sensor.infinity_memory_usage
+    - sensor.infinity_free_space_volume_3
+    - sensor.infinity_used_space_volume_3
+    - sensor.infinity_volume_used_volume_3
+    - sensor.infinity_network_link_eth0
+    - sensor.infinity_network_down_eth0
+    - sensor.infinity_network_up_eth0
+    - sensor.infinity_network_link_eth1
+    - sensor.infinity_network_down_eth1
+    - sensor.infinity_network_up_eth1
+    - sensor.infinity_status
+    - sensor.infinity_smart_status_drive_1
+    - sensor.infinity_smart_status_drive_2
+    - sensor.infinity_smart_status_drive_3
+    - sensor.infinity_smart_status_drive_4
+
+SystemScripts:
+  control: hidden
+  entities:
+    - sensor.zoneminder_state
+    - script.system_home
+    - script.system_away
+    - script.system_sleep
+    - script.system_vacation
+    - input_boolean.alarm
+    - input_select.system
+
+SystemStatus:
+  - sensor.cpu_use
+  - sensor.ram_free
+  - sensor.disk_use_
+  - sensor.last_boot
+  - sensor.since_last_boot
+  - sensor.speedtest_download
+  - sensor.speedtest_upload
+  - sensor.speedtest_ping
+  - sensor.ssl_arbiter
+  - sensor.ssl_genesis
+  - sensor.ssl_infinity
+  - sensor.ssl_witness
+  - sensor.homeassistant_v2db
+
+TrackCortana:
+  - sensor.cortana
+  - device_tracker.cortana
+  - device_tracker.cortana_nmap
+
+TrackGuiltySpark:
+  - sensor.guilty_spark
+  - device_tracker.guilty_spark
+  - device_tracker.guilty_spark_nmap
+
+wunderground:
+  - sensor.pws_weather
+  - sensor.pws_temp_f
+  - sensor.pws_feelslike_f
+  - sensor.pws_precip_1hr_in
+  - sensor.pws_precip_today_in
+  - sensor.pws_relative_humidity
+  - sensor.pws_station_id
+  - sensor.pws_location
+  - sensor.pws_observation_time
+
+ZoneMinderOffice:
+  - input_boolean.alarm
+  - camera.office
+  - sensor.office_status
+  - binary_sensor.motion_1
+  - sensor.office_events
+  - sensor.disk_use_percent_varcachezoneminder

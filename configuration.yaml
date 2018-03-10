@@ -112,7 +112,7 @@ zoneminder:
 automation: !include_dir_merge_list includes/automation
 binary_sensor: !include includes/binary_sensor.yaml
 camera: !include includes/camera.yaml
-#group: !include_dir_merge_named group
+group: !include includes/group.yaml
 input_boolean: !include includes/input_boolean.yaml
 input_select: !include includes/input_select.yaml
 notify: !include includes/notify.yaml

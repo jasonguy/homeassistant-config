@@ -3,6 +3,7 @@ logs
 *.log
 
 # files
+*.cfg
 *.conf
 *.db
 *.jpg
