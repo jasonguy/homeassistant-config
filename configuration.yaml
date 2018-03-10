@@ -106,9 +106,9 @@ tts:
 updater:
 
 zoneminder:
-  host: !secret zoneminder_host
-  username: !secret zoneminder_user
-  password: !secret zoneminder_pass
+  host: !secret zm_host
+  username: !secret zm_user
+  password: !secret zm_pass
 
 automation: !include_dir_merge_list includes/automation
 binary_sensor: !include includes/binary_sensor.yaml
