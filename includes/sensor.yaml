@@ -41,7 +41,7 @@
 
 - platform: filesize
   file_paths:
-    - /home/homeassistant/.homeassistant/home-assistant_v2.db
+    - !secret homeassistant_db_file
 
 - platform: qnap
   host: !secret qnap_ip
