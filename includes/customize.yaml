@@ -61,11 +61,11 @@ group.Pihole:
 group.SystemStatus:
   friendly_name: 'System Status'
 
-group.CertStatus:
-  friendly_name: 'Cert Status'
-
 group.DuckDNS:
   friendly_name: 'DuckDNS Status'
+
+group.TravisCI:
+  friendly_name: 'Travis CI Status'
 
 group.QNAP:
   friendly_name: 'Infinity'

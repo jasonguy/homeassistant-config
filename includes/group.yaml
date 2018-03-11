@@ -40,8 +40,8 @@ system_view:
   entities:
     - group.Pihole
     - group.SystemStatus
-    - group.CertStatus
     - group.DuckDNS
+    - group.TravisCI
     - group.QNAP
 
 debug_view:
@@ -200,6 +200,14 @@ TrackGuiltySpark:
   - sensor.guilty_spark
   - device_tracker.guilty_spark
   - device_tracker.guilty_spark_nmap
+
+TravisCI:
+  - sensor.nwmitchellhomeassistantconfig_last_build_state
+  - sensor.nwmitchellhomeassistantconfig_state
+  - sensor.nwmitchellhomeassistantconfig_last_build_id
+  - sensor.nwmitchellhomeassistantconfig_last_build_duration
+  - sensor.nwmitchellhomeassistantconfig_last_build_started_at
+  - sensor.nwmitchellhomeassistantconfig_last_build_finished_at
 
 wunderground:
   - sensor.pws_weather
