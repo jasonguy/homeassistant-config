@@ -90,6 +90,9 @@ sensor.cortana:
   friendly_name: 'Melinda'
   entity_picture: /local/cortana.jpg
 
+sensor.disk_use_percent_varcachezoneminder:
+  friendly_name: 'Storage Used'
+
 sensor.guilty_spark:
   friendly_name: 'Nick'
   entity_picture: /local/guilty_spark.jpg
@@ -97,23 +100,54 @@ sensor.guilty_spark:
 sensor.home_to_work:
   icon: mdi:domain
 
-sensor.work_to_home:
+sensor.melinda_to_home:
   icon: mdi:home-variant
-
-sensor.nick_to_work:
-  icon: mdi:domain
 
 sensor.nick_to_home:
-  icon: mdi:home-variant
-
-sensor.melinda_to_home:
   icon: mdi:home-variant
 
 sensor.nick_to_melinda:
   icon: mdi:account-multiple
 
-sensor.disk_use_percent_varcachezoneminder:
-  friendly_name: 'Storage Used'
+sensor.nick_to_work:
+  icon: mdi:domain
+
+sensor.nwmitchellhomeassistantconfig_last_build_duration:
+  friendly_name: Build Duration
+
+sensor.nwmitchellhomeassistantconfig_last_build_finished_at:
+  friendly_name: Build Finished
+
+sensor.nwmitchellhomeassistantconfig_last_build_id:
+  friendly_name: Build ID
+
+sensor.nwmitchellhomeassistantconfig_last_build_started_at:
+  friendly_name: Build Started
+
+sensor.nwmitchellhomeassistantconfig_last_build_state:
+  friendly_name: Build State
+
+sensor.nwmitchellhomeassistantconfig_state:
+  friendly_name: Config State
+
+switch.outlet_1:
+  friendly_name: 'Bar Light'
+  icon: mdi:lightbulb
+
+switch.outlet_2:
+  friendly_name: 'Desk Light'
+  #friendly_name: 'Buckeye Tree'
+  icon: mdi:lightbulb
+
+switch.outlet_3:
+  friendly_name: 'Guest Room Light'
+  #friendly_name: 'Family Christmas'
+  icon: mdi:lightbulb
+
+switch.outdoor_outlet_1:
+  friendly_name: 'Porch Lights'
+  #friendly_name: 'Exterior Christmas'
+  icon: mdi:lightbulb
 
 sensor.pihole_ads_blocked_today:
   friendly_name: "Blocked Today"
@@ -124,11 +158,15 @@ sensor.pihole_ads_percentage_blocked_today:
 sensor.pihole_dns_queries_today:
   friendly_name: "Queries Today"
 
-sensor.pihole_unique_clients:
-  friendly_name: "Unique Clients"
-
 sensor.pihole_domains_blocked:
   friendly_name: "Domains Blocked"
+
+switch.pihole_switch:
+  friendly_name: "Status"
+  icon: mdi:comment-check-outline
+
+sensor.pihole_unique_clients:
+  friendly_name: "Unique Clients"
 
 sensor.pws_feelslike_f:
   friendly_name: 'Feels Like'
@@ -173,28 +211,8 @@ sensor.ssl_infinity:
 sensor.ssl_witness:
   friendly_name: Witness
 
+sensor.work_to_home:
+  icon: mdi:home-variant
+
 sensor.zoneminder_state:
   friendly_name: 'Current State'
-
-switch.outlet_1:
-  friendly_name: 'Bar Light'
-  icon: mdi:lightbulb
-
-switch.outlet_2:
-  friendly_name: 'Desk Light'
-  #friendly_name: 'Buckeye Tree'
-  icon: mdi:lightbulb
-
-switch.outlet_3:
-  friendly_name: 'Guest Room Light'
-  #friendly_name: 'Family Christmas'
-  icon: mdi:lightbulb
-
-switch.outdoor_outlet_1:
-  friendly_name: 'Porch Lights'
-  #friendly_name: 'Exterior Christmas'
-  icon: mdi:lightbulb
-
-switch.pihole_switch:
-  friendly_name: "Status"
-  icon: mdi:comment-check-outline
