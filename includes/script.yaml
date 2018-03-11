@@ -10,6 +10,8 @@ bar_lamp_arrival:
 
 broadcast_tts_message:
   sequence:
+    - condition: template
+      value_template: "{{ states('input_select.system') != 'Guest' }}"
     - service: media_player.volume_set
       data_template:
         entity_id: media_player.office_speaker
