@@ -101,6 +101,9 @@
     from: 'off'
     to: 'on'
   action:
+  - service: notify.google_assistant
+    data:
+      message: "side door"
   - service: notify.glados
     data:
       title: Side door open
@@ -134,6 +137,9 @@
     from: 'off'
     to: 'on'
   action:
+  - service: notify.google_assistant
+    data:
+      message: "front door"
   - service: notify.glados
     data:
       title: Front door open
@@ -167,6 +173,9 @@
     from: 'off'
     to: 'on'
   action:
+  - service: notify.google_assistant
+    data:
+      message: "back door"
   - service: notify.glados
     data:
       title: Back door open

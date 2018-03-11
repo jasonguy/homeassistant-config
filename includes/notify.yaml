@@ -1,3 +1,7 @@
+- name: Google Assistant
+  platform: rest
+  resource: !secret google_assistant_resource
+
 - name: iOS
   platform: group
   services:
