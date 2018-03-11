@@ -8,3 +8,4 @@ hass_dirs:
   - includes
 non_hass_dirs:
   - bin
+  - www
