@@ -72,7 +72,7 @@ google_assistant:
     script.office_record_off:
       expose: false
 
-history:
+history: !include includes/history.yaml
 
 ios:
 

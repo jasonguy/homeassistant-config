@@ -1,9 +1,12 @@
 language: python
 python:
-  - "3.5.2"
+- 3.5.2
 before_install:
-  - mv .travis/travis_secrets.yaml secrets.yaml
+- mv .travis/travis_secrets.yaml secrets.yaml
 install:
-  - pip3 install homeassistant==0.64.3
+- pip3 install homeassistant==0.64.3
 script:
-  - hass -c . --script check_config
+- hass -c . --script check_config
+notifications:
+  slack:
+    secure: CiaglYM47vMf4maNHk9DeucCXHC0NzfPNEn0ivxMuv2E+mSVzhjb+0hdri951ZjcCbHFz0nbpBqK7oBxTEqS6EtoGiTc76fXqGvWqJz4WrQJSUNkZp803cNjn3GNSqloO91RcVcv+Fx69FZ63cF0Iy9ak8s55I9Y1AGQwH1WkXLooxcq+7ji52vH4GxIiJMQIAFGFnqHGKNZ/L+Hx6/ttST57J4S6tiPQ5VedwxykNvnaEpiuTOV8Z9UVAtSW+zb1J6EFGSfmSakXh26sOxKjkhIFihN0jXHHahqNUfs7Flmu8iFoDd1u04WJfRWigONdkZ/GJcvnfg01Mhp0RQDUigPg3MdLCIXAuu8YmHRk2pDDS5nfLGS18mFj6MsGzPzbikbaSGxHPyiWa4rVFPLSOJ1aD11hWFfLL8SjNZ0T9ARSYAc74AaRN3U/MMPRExGujOpsQvfGzlinaHI7s6PCZaWSzZC1wCk2zcC6wXkctMt51O/41CbNLPuNu0MfRQF0X7d8EtU3cUSYUFaxQCAPReqUc310SBSNEQxDGtEkBVTsO+nSkUf4hCRX/52ynuI955UnpcDZp6fnwhp+edInq/soci3BQv1BmIemIDFdldFQhcbMk26ZMa5T+1Xfvqwhz2d5gQoQu887UHiLwyaW8af+iwLuFjDol/zoLbeFYw=
