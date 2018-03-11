@@ -101,7 +101,7 @@
     from: 'off'
     to: 'on'
   action:
-  - service: notify.google_assistant
+  - service: script.broadcast_tts_message
     data:
       message: "side door"
   - service: notify.glados
@@ -137,7 +137,7 @@
     from: 'off'
     to: 'on'
   action:
-  - service: notify.google_assistant
+  - service: script.broadcast_tts_message
     data:
       message: "front door"
   - service: notify.glados
@@ -173,7 +173,7 @@
     from: 'off'
     to: 'on'
   action:
-  - service: notify.google_assistant
+  - service: script.broadcast_tts_message
     data:
       message: "back door"
   - service: notify.glados
