@@ -8,6 +8,20 @@ bar_lamp_arrival:
     - service: homeassistant.turn_off
       entity_id: switch.outlet_1
 
+broadcast_tts_message:
+  sequence:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.office_speaker
+        volume_level: "0.5"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speaker
+        volume_level: "0.5"
+    - service: notify.google_assistant
+      data_template:
+        message: "{{ message }}"
+
 update_location_guilty_spark:
   sequence:
     - service: notify.ios_guilty_spark
