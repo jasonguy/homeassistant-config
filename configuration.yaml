@@ -45,6 +45,11 @@ apple_tv:
 
 config:
 
+device_tracker:
+  - platform: nmap_tracker
+    hosts: !secret nmap_range
+    scan_options: " -sP "
+
 duckdns:
   domain: !secret duckdns_domain
   access_token: !secret duckdns_token
