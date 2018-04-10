@@ -115,6 +115,7 @@ KitchenSpeaker:
   - media_player.kitchen_speaker
 
 LightsDownstairs:
+  - switch.switch_1
   - switch.outlet_1
   - switch.outlet_2
   - switch.outdoor_outlet_1

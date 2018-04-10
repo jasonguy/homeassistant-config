@@ -30,6 +30,14 @@
   payload_off: "off"
   retain: true
 
+- platform: mqtt
+  name: "switch_1"
+  state_topic: "smartthings/switch_1/switch"
+  command_topic: "smartthings/switch_1/switch"
+  payload_on: "on"
+  payload_off: "off"
+  retain: true
+
 - platform: command_line
   switches:
     pihole_switch:

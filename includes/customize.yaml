@@ -149,6 +149,11 @@ switch.outdoor_outlet_1:
   #friendly_name: 'Exterior Christmas'
   icon: mdi:lightbulb
 
+switch.switch_1:
+  friendly_name: 'Family Room Lights'
+  icon: mdi:lightbulb
+
+
 sensor.pihole_ads_blocked_today:
   friendly_name: "Blocked Today"
 
