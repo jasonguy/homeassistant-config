@@ -156,6 +156,19 @@
   action:
     - service: script.system_vacation
 
+- alias: Disable alarm after system set to home
+  trigger:
+    platform: state
+    entity_id: input_boolean.home
+    from: 'off'
+    to: 'on'
+  action:
+    - delay:
+        seconds: 30
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.alarm
+
 - alias: Update device locations following door open event
   trigger:
     - platform: state
@@ -179,6 +192,15 @@
       data:
         message: "request_location_update"
 
+- alias: 'Update device locations at startup'
+  initial_state: 'on'
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    service: script.turn_on
+    entity_id: script.update_location_all
+
 - alias: 'Set theme at startup'
   initial_state: 'on'
   trigger:
@@ -188,15 +210,6 @@
     service: frontend.set_theme
     data:
       name: darkorange
-
-- alias: 'Update device locations at startup'
-  initial_state: 'on'
-  trigger:
-    - platform: homeassistant
-      event: start
-  action:
-    service: script.turn_on
-    entity_id: script.update_location_all
 
 - alias: Home Assistant Update Available
   trigger:

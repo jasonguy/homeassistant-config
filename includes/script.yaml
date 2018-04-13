@@ -49,9 +49,6 @@ system_home:
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.vacation
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.alarm
     - service: notify.glados
       data:
         title: System mode changed
