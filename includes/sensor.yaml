@@ -61,24 +61,6 @@
   origin: !secret work_address
   destination: !secret home_address
 
-- platform: google_travel_time
-  name: Nick to Home
-  api_key: !secret google_api_key
-  origin: device_tracker.guilty_spark
-  destination: !secret home_address
-
-- platform: google_travel_time
-  name: Melinda to Home
-  api_key: !secret google_api_key
-  origin: device_tracker.cortana
-  destination: !secret home_address
-
-- platform: google_travel_time
-  name: Nick to Melinda
-  api_key: !secret google_api_key
-  origin: device_tracker.guilty_spark
-  destination: device_tracker.cortana
-
 - platform: pi_hole
   host: !secret pihole_ip
 

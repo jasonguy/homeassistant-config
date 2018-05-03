@@ -21,9 +21,9 @@
       synchronize: src={{ item }}/ dest={{ path }}{{ item }} delete=yes recursive=yes rsync_opts="--exclude=*.pyc"
       with_items: "{{ non_hass_dirs }}"
     # Copy homebridge config
-    - name: Copy homebridge config
-      copy: src=homebridge/config.json dest=~/.homebridge/config.json
-      notify: restart homebridge
+    #- name: Copy homebridge config
+    #  copy: src=homebridge/config.json dest=~/.homebridge/config.json
+    #  notify: restart homebridge
     # Copy appdaemon directory
     - name: Copy appdaemon directory
       synchronize: src=appdaemon/ dest={{ path }}appdaemon/ delete=yes recursive=yes
