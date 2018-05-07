@@ -55,10 +55,10 @@ debug_view:
 
 
 AppleTvDownstairs:
-  - media_player.downstairs_apple_tv
+  - media_player.apple_tv
 
 Chromecast:
-  - media_player.family_room_tv
+  - media_player.bedroom_tv
 
 CommuteTimes:
   - sensor.nick_to_home
@@ -83,6 +83,7 @@ Doors:
   - binary_sensor.sensor_1
   - binary_sensor.sensor_2
   - binary_sensor.sensor_3
+  - input_boolean.silent
 
 DownstairsSpeakers:
   - media_player.kitchen_speaker

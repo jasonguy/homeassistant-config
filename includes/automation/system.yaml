@@ -21,6 +21,26 @@
   action:
     - service: script.bar_lamp_arrival
 
+- alias: Silent upon Guest mode activate
+  trigger:
+    platform: state
+    entity_id: input_select.system
+    from: 'Guest'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.silent
+
+- alias: Remove Silent upon Guest mode deactivate
+  trigger:
+    platform: state
+    entity_id: input_select.system
+    to: 'Guest'
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.silent
+
 - alias: Start office recording
   trigger:
     platform: state

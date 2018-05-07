@@ -11,7 +11,7 @@ bar_lamp_arrival:
 broadcast_tts_message:
   sequence:
     - condition: template
-      value_template: "{{ states('input_select.system') != 'Guest' }}"
+      value_template: "{{ states('input_boolean.silent') != 'on' }}"
     - service: notify.google_assistant
       data_template:
         message: "{{ message }}"
