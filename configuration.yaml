@@ -22,6 +22,8 @@ http:
     - !secret vpn
     - !secret work
     - 127.0.0.1
+  ip_ban_enabled: True
+  login_attempts_threshold: 3
 
 zone:
   name: Home
